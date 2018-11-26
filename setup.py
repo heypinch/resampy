@@ -21,7 +21,6 @@ setup(
     install_requires=[
         'numpy>=1.10',
         'scipy>=0.13',
-        'numba>=0.32',
         'six>=1.3'],
     extras_require={
         'docs': [

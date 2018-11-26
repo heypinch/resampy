@@ -1,10 +1,6 @@
 #!/usr/bin/env python
-'''Numba implementation of resampler'''
-
-import numba
 
 
-@numba.jit(nopython=True, nogil=True)
 def resample_f(x, y, sample_ratio, interp_win, interp_delta, num_table):
 
     scale = min(1.0, sample_ratio)

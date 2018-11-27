@@ -26,7 +26,6 @@ where ``**kwargs`` are additional parameters to `resampy.filters.sinc_window`_.
 
 '''
 
-import scipy.signal
 import numpy as np
 import os
 import pkg_resources
@@ -36,6 +35,26 @@ import sys
 FILTER_FUNCTIONS = ['sinc_window']
 
 __all__ = ['get_filter'] + FILTER_FUNCTIONS
+
+
+def _blackman_harris_window(M, sym=True):
+    # ripped straight from scipy
+    # https://github.com/scipy/scipy/blob/v0.14.0/scipy/signal/windows.py#L394
+    if M < 1:
+        return np.array([])
+    if M == 1:
+        return np.ones(1, 'd')
+    odd = M % 2
+    if not sym and not odd:
+        M = M + 1
+    a = [0.35875, 0.48829, 0.14128, 0.01168]
+    n = np.arange(0, M)
+    fac = n * 2 * np.pi / (M - 1.0)
+    w = (a[0] - a[1] * np.cos(fac) +
+         a[2] * np.cos(2 * fac) - a[3] * np.cos(3 * fac))
+    if not sym and not odd:
+        w = w[:-1]
+    return w
 
 
 def sinc_window(num_zeros=64, precision=9, window=None, rolloff=0.945):
@@ -94,7 +113,7 @@ def sinc_window(num_zeros=64, precision=9, window=None, rolloff=0.945):
     '''
 
     if window is None:
-        window = scipy.signal.blackmanharris
+        window = _blackman_harris_window
     elif not six.callable(window):
         raise TypeError('window must be callable, not type(window)={}'.format(type(window)))
 

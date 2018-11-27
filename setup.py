@@ -20,7 +20,6 @@ setup(
     package_data={'resampy': ['data/*']},
     install_requires=[
         'numpy>=1.10',
-        'scipy>=0.13',
         'six>=1.3',
         # 0.39 contains a regression for AWS Lambda execution
         # see https://github.com/numba/numba/issues/3344 for more info

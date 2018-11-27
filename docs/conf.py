@@ -56,7 +56,7 @@ project = u'resampy'
 copyright = u'2016, Brian McFee'
 
 import mock
-MOCK_MODULES = ['numpy', 'scipy', 'scipy.signal', 'resampy.interp']
+MOCK_MODULES = ['numpy', 'resampy.interp']
 sys.modules.update((mod_name, mock.Mock()) for mod_name in MOCK_MODULES)
 
 # The version info for the project you're documenting, acts as replacement for
@@ -278,5 +278,4 @@ numpydoc_show_class_members = False
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'python': ('http://docs.python.org/', None),
-                       'numpy': ('http://docs.scipy.org/doc/numpy/', None),
-                       'scipy': ('http://docs.scipy.org/doc/scipy/reference/', None)}
+                       'numpy': ('http://docs.scipy.org/doc/numpy/', None)}

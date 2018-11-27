@@ -23,8 +23,7 @@ setup(
         'six>=1.3',
         # 0.39 contains a regression for AWS Lambda execution
         # see https://github.com/numba/numba/issues/3344 for more info
-        # 0.38 also contains a compilation error
-        'numba>=0.32,<0.38'
+        'numba>=0.32,<0.39'
     ],
     extras_require={
         'docs': [
